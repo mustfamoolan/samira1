@@ -17,7 +17,6 @@ return new class extends Migration
             $table->string('phone')->unique();
             $table->string('password');
             $table->string('photo')->nullable();
-            $table->foreignId('specialization_id')->constrained('specializations')->onDelete('cascade');
             $table->boolean('is_active')->default(true);
             $table->timestamps();
         });
