@@ -52,7 +52,7 @@
                 init() {
                     this.datatable = new simpleDatatables.DataTable('#patientsTable', {
                         data: {
-                            headings: ['الاسم الرباعي', 'الرقم الوطني', 'العمر', 'الجنس', 'المحافظة', 'الطبيب', 'الحالة', 'الحقنة', 'الجرعة المتبقية', 'الإجراءات'],
+                            headings: ['الاسم الرباعي', 'الرقم الوطني', 'العمر', 'الجنس', 'المحافظة', 'الطبيب', 'الإجراءات'],
                             data: {!! json_encode($patientsData) !!}
                         },
                         searchable: true,
@@ -83,36 +83,6 @@
                             },
                             {
                                 select: 6,
-                                render: (data, cell, row) => {
-                                    const patient = {!! json_encode($patients) !!}[row.dataIndex];
-                                    let statusClass = 'warning';
-                                    let statusText = 'قيد الانتظار';
-
-                                    if (patient.status === 'complete') {
-                                        statusClass = 'success';
-                                        statusText = 'مكتمل';
-                                    } else if (patient.status === 'review') {
-                                        statusClass = 'info';
-                                        statusText = 'مراجعة';
-                                    }
-
-                                    return `<span class="badge bg-${statusClass}">${statusText}</span>`;
-                                },
-                            },
-                            {
-                                select: 7,
-                                render: (data, cell, row) => {
-                                    return data || 'لا يوجد';
-                                },
-                            },
-                            {
-                                select: 8,
-                                render: (data, cell, row) => {
-                                    return data || 'غير محدد';
-                                },
-                            },
-                            {
-                                select: 9,
                                 sortable: false,
                                 render: (data, cell, row) => {
                                     const patient = {!! json_encode($patients) !!}[row.dataIndex];

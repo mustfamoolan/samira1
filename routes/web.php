@@ -280,9 +280,11 @@ Route::prefix('consultation')->name('consultation.')->group(function () {
     Route::get('/patients', [PatientController::class, 'indexConsultation'])->name('patients.index');
     Route::get('/patients/create', [PatientController::class, 'createConsultation'])->name('patients.create');
     Route::post('/patients', [PatientController::class, 'storeConsultation'])->name('patients.store');
+    Route::get('/patients/{patient}', [PatientController::class, 'showConsultation'])->name('patients.show');
     Route::get('/patients/{patient}/edit', [PatientController::class, 'editConsultation'])->name('patients.edit');
     Route::put('/patients/{patient}', [PatientController::class, 'updateConsultation'])->name('patients.update');
     Route::delete('/patients/{patient}', [PatientController::class, 'destroyConsultation'])->name('patients.destroy');
+    Route::post('/patients/check-national-id', [PatientController::class, 'checkNationalId'])->name('patients.check-national-id');
 });
 
 // ================================

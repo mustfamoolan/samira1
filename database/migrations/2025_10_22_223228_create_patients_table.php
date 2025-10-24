@@ -20,7 +20,7 @@ return new class extends Migration
             $table->integer('age'); // العمر
             $table->string('phone'); // رقم الهاتف
             $table->enum('gender', ['ذكر', 'أنثى']); // الجنس
-            $table->enum('sector', ['حكومي', 'عتبة']); // القطاع
+            $table->enum('sector', ['حكومي', 'عتبة عام', 'عتبة خاص']); // القطاع
             $table->string('bus_fee')->nullable(); // رسوم الباص
             $table->foreignId('doctor_id')->constrained('doctors')->onDelete('cascade'); // الطبيب
             $table->enum('status', ['pending', 'complete', 'review'])->default('pending'); // الحالة

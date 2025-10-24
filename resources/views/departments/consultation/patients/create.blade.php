@@ -47,6 +47,19 @@
                         <div>
                             <label for="national_id" class="form-label">الرقم الوطني <span class="text-danger">*</span></label>
                             <input type="text" class="form-input" id="national_id" name="national_id" value="{{ old('national_id') }}" required>
+
+                            <!-- رسالة التنبيه -->
+                            <div id="national-id-alert" class="hidden mt-2">
+                                <div class="alert alert-danger flex items-center justify-between">
+                                    <div>
+                                        <strong>تنبيه!</strong>
+                                        <span id="alert-message">هذا الرقم الوطني مسجل مسبقاً</span>
+                                    </div>
+                                    <a href="#" id="view-patient-btn" class="btn btn-sm btn-outline-danger">
+                                        عرض ملف المريض
+                                    </a>
+                                </div>
+                            </div>
                         </div>
 
                         <!-- البلد -->
@@ -89,18 +102,8 @@
                             <select class="form-select" id="sector" name="sector" required>
                                 <option value="">اختر القطاع</option>
                                 <option value="حكومي" {{ old('sector') == 'حكومي' ? 'selected' : '' }}>حكومي</option>
-                                <option value="عتبة" {{ old('sector') == 'عتبة' ? 'selected' : '' }}>عتبة</option>
-                            </select>
-                        </div>
-
-                        <!-- جهة العين -->
-                        <div>
-                            <label for="eye_side" class="form-label">جهة العين</label>
-                            <select class="form-select" id="eye_side" name="eye_side">
-                                <option value="">اختر جهة العين</option>
-                                <option value="يمين" {{ old('eye_side') == 'يمين' ? 'selected' : '' }}>يمين</option>
-                                <option value="يسار" {{ old('eye_side') == 'يسار' ? 'selected' : '' }}>يسار</option>
-                                <option value="يمين+يسار" {{ old('eye_side') == 'يمين+يسار' ? 'selected' : '' }}>يمين+يسار</option>
+                                <option value="عتبة عام" {{ old('sector') == 'عتبة عام' ? 'selected' : '' }}>عتبة عام</option>
+                                <option value="عتبة خاص" {{ old('sector') == 'عتبة خاص' ? 'selected' : '' }}>عتبة خاص</option>
                             </select>
                         </div>
 
@@ -123,21 +126,10 @@
                             </select>
                         </div>
 
-                        <!-- الحالة -->
-                        <div>
-                            <label for="status" class="form-label">الحالة <span class="text-danger">*</span></label>
-                            <select class="form-select" id="status" name="status" required>
-                                <option value="">اختر الحالة</option>
-                                <option value="pending" {{ old('status') == 'pending' ? 'selected' : '' }}>قيد الانتظار</option>
-                                <option value="complete" {{ old('status') == 'complete' ? 'selected' : '' }}>مكتمل</option>
-                                <option value="review" {{ old('status') == 'review' ? 'selected' : '' }}>مراجعة</option>
-                            </select>
-                        </div>
-
                         <!-- ملف التشخيص -->
                         <div>
-                            <label for="diagnosis_file" class="form-label">ملف التشخيص <span class="text-danger">*</span></label>
-                            <input type="file" class="form-input" id="diagnosis_file" name="diagnosis_file" accept=".pdf,.jpg,.jpeg,.png" required>
+                            <label for="diagnosis_file" class="form-label">ملف التشخيص</label>
+                            <input type="file" class="form-input" id="diagnosis_file" name="diagnosis_file" accept=".pdf,.jpg,.jpeg,.png">
                             <div class="text-xs text-gray-500 mt-1">يمكن رفع ملفات PDF أو صور (JPG, PNG)</div>
                         </div>
 
@@ -146,33 +138,6 @@
                             <label for="sonar_file" class="form-label">ملف السونار</label>
                             <input type="file" class="form-input" id="sonar_file" name="sonar_file" accept=".pdf,.jpg,.jpeg,.png">
                             <div class="text-xs text-gray-500 mt-1">يمكن رفع ملفات PDF أو صور (JPG, PNG)</div>
-                        </div>
-
-                        <!-- الحقنة -->
-                        <div>
-                            <label for="injection_id" class="form-label">الحقنة</label>
-                            <select class="form-select" id="injection_id" name="injection_id">
-                                <option value="">اختر الحقنة</option>
-                                @foreach($injections as $injection)
-                                    <option value="{{ $injection->id }}" {{ old('injection_id') == $injection->id ? 'selected' : '' }}>
-                                        {{ $injection->name }}
-                                    </option>
-                                @endforeach
-                            </select>
-                        </div>
-
-                        <!-- الجرعة الكلية -->
-                        <div>
-                            <label for="total_dose" class="form-label">الجرعة الكلية</label>
-                            <input type="number" class="form-input" id="total_dose" name="total_dose" value="{{ old('total_dose') }}" min="0">
-                            <div class="text-xs text-gray-500 mt-1">عدد الجرعات المطلوبة</div>
-                        </div>
-
-                        <!-- الجرعة المتبقية -->
-                        <div>
-                            <label for="remaining_dose" class="form-label">الجرعة المتبقية</label>
-                            <input type="number" class="form-input" id="remaining_dose" name="remaining_dose" value="{{ old('remaining_dose') }}" min="0" readonly>
-                            <div class="text-xs text-gray-500 mt-1">سيتم حسابها تلقائياً</div>
                         </div>
                     </div>
 
@@ -190,6 +155,81 @@
     </div>
 
     <script>
+        // التحقق الفوري من الرقم الوطني
+        document.addEventListener('DOMContentLoaded', function() {
+            const nationalIdInput = document.getElementById('national_id');
+            const alertDiv = document.getElementById('national-id-alert');
+            const alertMessage = document.getElementById('alert-message');
+            const viewPatientBtn = document.getElementById('view-patient-btn');
+            const submitBtn = document.querySelector('button[type="submit"]');
+
+            let patientExists = false;
+            let checkTimeout;
+
+            nationalIdInput.addEventListener('input', function() {
+                const nationalId = this.value.trim();
+
+                // إخفاء التنبيه إذا كان الحقل فارغاً
+                if (!nationalId) {
+                    alertDiv.classList.add('hidden');
+                    nationalIdInput.classList.remove('border-danger');
+                    patientExists = false;
+                    submitBtn.disabled = false;
+                    return;
+                }
+
+                // Debounce: الانتظار 500ms بعد آخر حرف مكتوب
+                clearTimeout(checkTimeout);
+                checkTimeout = setTimeout(() => {
+                    checkNationalId(nationalId);
+                }, 500);
+            });
+
+            function checkNationalId(nationalId) {
+                fetch('{{ route("consultation.patients.check-national-id") }}', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json',
+                        'X-CSRF-TOKEN': '{{ csrf_token() }}'
+                    },
+                    body: JSON.stringify({ national_id: nationalId })
+                })
+                .then(response => response.json())
+                .then(data => {
+                    if (data.exists) {
+                        // المريض موجود
+                        patientExists = true;
+                        alertDiv.classList.remove('hidden');
+                        nationalIdInput.classList.add('border-danger');
+
+                        alertMessage.textContent = `هذا الرقم الوطني مسجل مسبقاً باسم: ${data.patient.full_name}`;
+                        viewPatientBtn.href = data.patient.view_url;
+
+                        // تعطيل زر الحفظ
+                        submitBtn.disabled = true;
+                    } else {
+                        // المريض غير موجود
+                        patientExists = false;
+                        alertDiv.classList.add('hidden');
+                        nationalIdInput.classList.remove('border-danger');
+                        submitBtn.disabled = false;
+                    }
+                })
+                .catch(error => {
+                    console.error('Error checking national ID:', error);
+                });
+            }
+
+            // منع إرسال النموذج إذا كان المريض موجوداً
+            document.querySelector('form').addEventListener('submit', function(e) {
+                if (patientExists) {
+                    e.preventDefault();
+                    alertDiv.classList.remove('hidden');
+                    nationalIdInput.focus();
+                }
+            });
+        });
+
         // حساب الجرعة المتبقية تلقائياً
         document.getElementById('total_dose').addEventListener('input', function() {
             const totalDose = this.value;

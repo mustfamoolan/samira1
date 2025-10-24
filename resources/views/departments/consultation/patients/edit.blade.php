@@ -90,18 +90,8 @@
                             <select class="form-select" id="sector" name="sector" required>
                                 <option value="">اختر القطاع</option>
                                 <option value="حكومي" {{ old('sector', $patient->sector) == 'حكومي' ? 'selected' : '' }}>حكومي</option>
-                                <option value="عتبة" {{ old('sector', $patient->sector) == 'عتبة' ? 'selected' : '' }}>عتبة</option>
-                            </select>
-                        </div>
-
-                        <!-- جهة العين -->
-                        <div>
-                            <label for="eye_side" class="form-label">جهة العين</label>
-                            <select class="form-select" id="eye_side" name="eye_side">
-                                <option value="">اختر جهة العين</option>
-                                <option value="يمين" {{ old('eye_side', $patient->eye_side) == 'يمين' ? 'selected' : '' }}>يمين</option>
-                                <option value="يسار" {{ old('eye_side', $patient->eye_side) == 'يسار' ? 'selected' : '' }}>يسار</option>
-                                <option value="يمين+يسار" {{ old('eye_side', $patient->eye_side) == 'يمين+يسار' ? 'selected' : '' }}>يمين+يسار</option>
+                                <option value="عتبة عام" {{ old('sector', $patient->sector) == 'عتبة عام' ? 'selected' : '' }}>عتبة عام</option>
+                                <option value="عتبة خاص" {{ old('sector', $patient->sector) == 'عتبة خاص' ? 'selected' : '' }}>عتبة خاص</option>
                             </select>
                         </div>
 
@@ -121,17 +111,6 @@
                                         {{ $doctor->name }}
                                     </option>
                                 @endforeach
-                            </select>
-                        </div>
-
-                        <!-- الحالة -->
-                        <div>
-                            <label for="status" class="form-label">الحالة <span class="text-danger">*</span></label>
-                            <select class="form-select" id="status" name="status" required>
-                                <option value="">اختر الحالة</option>
-                                <option value="pending" {{ old('status', $patient->status) == 'pending' ? 'selected' : '' }}>قيد الانتظار</option>
-                                <option value="complete" {{ old('status', $patient->status) == 'complete' ? 'selected' : '' }}>مكتمل</option>
-                                <option value="review" {{ old('status', $patient->status) == 'review' ? 'selected' : '' }}>مراجعة</option>
                             </select>
                         </div>
 
@@ -161,33 +140,6 @@
                             @endif
                             <input type="file" class="form-input" id="sonar_file" name="sonar_file" accept=".pdf,.jpg,.jpeg,.png">
                             <div class="text-xs text-gray-500 mt-1">يمكن رفع ملفات PDF أو صور (JPG, PNG)</div>
-                        </div>
-
-                        <!-- الحقنة -->
-                        <div>
-                            <label for="injection_id" class="form-label">الحقنة</label>
-                            <select class="form-select" id="injection_id" name="injection_id">
-                                <option value="">اختر الحقنة</option>
-                                @foreach($injections as $injection)
-                                    <option value="{{ $injection->id }}" {{ old('injection_id', $patient->injection_id) == $injection->id ? 'selected' : '' }}>
-                                        {{ $injection->name }}
-                                    </option>
-                                @endforeach
-                            </select>
-                        </div>
-
-                        <!-- الجرعة الكلية -->
-                        <div>
-                            <label for="total_dose" class="form-label">الجرعة الكلية</label>
-                            <input type="number" class="form-input" id="total_dose" name="total_dose" value="{{ old('total_dose', $patient->total_dose) }}" min="0">
-                            <div class="text-xs text-gray-500 mt-1">عدد الجرعات المطلوبة</div>
-                        </div>
-
-                        <!-- الجرعة المتبقية -->
-                        <div>
-                            <label for="remaining_dose" class="form-label">الجرعة المتبقية</label>
-                            <input type="number" class="form-input" id="remaining_dose" name="remaining_dose" value="{{ old('remaining_dose', $patient->remaining_dose) }}" min="0">
-                            <div class="text-xs text-gray-500 mt-1">عدد الجرعات المتبقية</div>
                         </div>
                     </div>
 
