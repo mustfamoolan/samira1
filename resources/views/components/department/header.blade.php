@@ -355,7 +355,7 @@
                         <span>
                             @php
                                 $user = auth('employee')->user() ?? auth('department_manager')->user();
-                                $userType = auth('employee')->check() ? 'موظف' : 'مسؤول قسم';
+                                $userType = auth('employee')->check() ? 'موظف' : 'مسؤول وحدة';
                             @endphp
                             @if($user && $user->photo)
                                 <img class="w-9 h-9 rounded-full object-cover saturate-50 group-hover:saturate-100"
@@ -576,28 +576,28 @@
                 </a>
                 <ul class="sub-menu">
                     <li>
-                        <a href="{{ route('admin.departments.consultation') }}">قسم الاستشارية</a>
+                        <a href="{{ route('admin.departments.consultation') }}">وحدة الاستشارية</a>
                     </li>
                     <li>
-                        <a href="{{ route('admin.departments.vision-test') }}">قسم فحص البصر</a>
+                        <a href="{{ route('admin.departments.vision-test') }}">وحدة فحص البصر</a>
                     </li>
                     <li>
                         <a href="{{ route('admin.departments.pharmacy') }}">وحدة المذخر</a>
                     </li>
                     <li>
-                        <a href="{{ route('admin.departments.accounting') }}">قسم الحسابات</a>
+                        <a href="{{ route('admin.departments.accounting') }}">وحدة الحسابات</a>
                     </li>
                     <li>
-                        <a href="{{ route('admin.departments.operations') }}">قسم العمليات</a>
+                        <a href="{{ route('admin.departments.operations') }}">وحدة العمليات</a>
                     </li>
                     <li>
-                        <a href="{{ route('admin.departments.bookings') }}">قسم الحجوزات</a>
+                        <a href="{{ route('admin.departments.bookings') }}">وحدة الحجوزات</a>
                     </li>
                     <li>
                         <a href="{{ route('admin.departments.injection') }}">وحدة الحقن</a>
                     </li>
                     <li>
-                        <a href="{{ route('admin.departments.statistics') }}">قسم الإحصاء</a>
+                        <a href="{{ route('admin.departments.statistics') }}">وحدة الإحصاء</a>
                     </li>
                 </ul>
             </li>

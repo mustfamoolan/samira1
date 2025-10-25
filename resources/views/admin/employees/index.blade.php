@@ -52,7 +52,7 @@
                 init() {
                     this.datatable = new simpleDatatables.DataTable('#employeesTable', {
                         data: {
-                            headings: ['الاسم', 'رقم الهاتف', 'القسم', 'تاريخ الإنشاء', 'الحالة', 'الإجراءات'],
+                            headings: ['الاسم', 'رقم الهاتف', 'الوحدة', 'تاريخ الإنشاء', 'الحالة', 'الإجراءات'],
                             data: {!! json_encode($employeesData) !!}
                         },
                         searchable: true,

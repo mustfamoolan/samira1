@@ -44,7 +44,7 @@
                     <div class="flex items-center mt-5">
                         <div
                             class="text-3xl font-bold ltr:mr-3 rtl:ml-3">{{ $stats['departments_count'] ?? 0 }}</div>
-                        <div class="badge bg-white/30">قسم</div>
+                        <div class="badge bg-white/30">وحدة</div>
                     </div>
                     <div class="flex items-center font-semibold mt-5">
                         <svg width="24" height="24" viewBox="0 0 24 24" fill="none"
@@ -319,7 +319,7 @@
                             <path d="M15 12L12 12M12 12L9 12M12 12L12 9M12 12L12 15" stroke="currentColor"
                                 stroke-width="1.5" stroke-linecap="round" />
                         </svg>
-                        إضافة مسؤول قسم
+                        إضافة مسؤول وحدة
                     </a>
                     <a href="{{ route('admin.employees.create') }}"
                         class="flex items-center justify-center btn btn-info gap-2">
@@ -339,7 +339,7 @@
                             <path d="M15 12L12 12M12 12L9 12M12 12L12 9M12 12L12 15" stroke="currentColor"
                                 stroke-width="1.5" stroke-linecap="round" />
                         </svg>
-                        إضافة قسم
+                        إضافة وحدة
                     </a>
                 </div>
             </div>

@@ -116,7 +116,7 @@
                                 @if(auth('admin')->check())
                                     الأقسام
                                 @else
-                                    القسم الحالي
+                                    الوحدة الحالية
                                 @endif
                             </span>
                         </div>
@@ -132,31 +132,31 @@
                         @if(auth('admin')->check())
                             <!-- المدير العام يرى جميع الأقسام -->
                             <li>
-                                <a href="{{ route('admin.departments.consultation') }}">قسم الاستشارية</a>
+                                <a href="{{ route('admin.departments.consultation') }}">وحدة الاستشارية</a>
                             </li>
                             <li>
-                                <a href="{{ route('admin.departments.vision-test') }}">قسم فحص البصر</a>
+                                <a href="{{ route('admin.departments.vision-test') }}">وحدة فحص البصر</a>
                             </li>
                             <li>
                                 <a href="{{ route('admin.departments.pharmacy') }}">وحدة المذخر</a>
                             </li>
                             <li>
-                                <a href="{{ route('admin.departments.accounting') }}">قسم الحسابات</a>
+                                <a href="{{ route('admin.departments.accounting') }}">وحدة الحسابات</a>
                             </li>
                             <li>
-                                <a href="{{ route('admin.departments.operations') }}">قسم العمليات</a>
+                                <a href="{{ route('admin.departments.operations') }}">وحدة العمليات</a>
                             </li>
                             <li>
-                                <a href="{{ route('admin.departments.bookings') }}">قسم الحجوزات</a>
+                                <a href="{{ route('admin.departments.bookings') }}">وحدة الحجوزات</a>
                             </li>
                             <li>
                                 <a href="{{ route('admin.departments.injection') }}">وحدة الحقن</a>
                             </li>
                             <li>
-                                <a href="{{ route('admin.departments.statistics') }}">قسم الإحصاء</a>
+                                <a href="{{ route('admin.departments.statistics') }}">وحدة الإحصاء</a>
                             </li>
                         @else
-                            <!-- الموظفين ومسؤولي الأقسام يرون قسمهم فقط -->
+                            <!-- الموظفين ومسؤولي الوحدات يرون وحدتهم فقط -->
                             @php
                                 $currentDepartment = $user->department ?? null;
                             @endphp
@@ -165,7 +165,7 @@
                                     <a href="javascript:;" class="text-primary font-semibold">{{ $currentDepartment->name }}</a>
                                 </li>
                                 <li>
-                                    <a href="javascript:;" class="text-gray-400">{{ $currentDepartment->description ?? 'وصف القسم غير متوفر' }}</a>
+                                    <a href="javascript:;" class="text-gray-400">{{ $currentDepartment->description ?? 'وصف الوحدة غير متوفر' }}</a>
                                 </li>
                             @endif
                         @endif
@@ -212,7 +212,7 @@
                 </li>
                 @endif
 
-                <!-- المرضى - لقسم الاستشارية فقط -->
+                <!-- المرضى - لوحدة الاستشارية فقط -->
                 @if($currentDepartment && $currentDepartment->department_type === 'consultation')
                 <li class="nav-item">
                     <a href="{{ route('consultation.patients.index') }}" class="nav-link group">

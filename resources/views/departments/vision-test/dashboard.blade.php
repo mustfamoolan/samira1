@@ -10,7 +10,7 @@
                 <a href="javascript:;" class="text-primary hover:underline">لوحة التحكم</a>
             </li>
             <li class="before:content-['/'] ltr:before:mr-1 rtl:before:ml-1">
-                <span>{{ $department->name ?? 'القسم' }}</span>
+                <span>{{ $department->name ?? 'الوحدة' }}</span>
             </li>
         </ul>
 
@@ -18,14 +18,14 @@
             <!-- Breadcrumb -->
             <div class="mb-6">
                 <h2 class="text-xl font-bold">مرحباً {{ $user->name ?? 'مستخدم' }}</h2>
-                <p class="text-white-dark">{{ $department->name ?? 'القسم' }} - {{ $department->description ?? 'نظام إدارة القسم' }}</p>
+                <p class="text-white-dark">{{ $department->name ?? 'الوحدة' }} - {{ $department->description ?? 'نظام إدارة الوحدة' }}</p>
             </div>
 
             <!-- Department Info -->
             <div class="panel">
                 <div class="mb-5">
-                    <h5 class="font-semibold text-lg dark:text-white-light">{{ $department->name ?? 'القسم' }}</h5>
-                    <p class="text-gray-600 dark:text-gray-400">{{ $department->description ?? 'وصف القسم غير متوفر' }}</p>
+                    <h5 class="font-semibold text-lg dark:text-white-light">{{ $department->name ?? 'الوحدة' }}</h5>
+                    <p class="text-gray-600 dark:text-gray-400">{{ $department->description ?? 'وصف الوحدة غير متوفر' }}</p>
                 </div>
 
                 <div class="text-center py-12">
@@ -35,7 +35,7 @@
                         </svg>
                     </div>
                     <h3 class="text-2xl font-bold text-gray-800 dark:text-white mb-4">قيد التطوير</h3>
-                    <p class="text-gray-600 dark:text-gray-400 text-lg">هذا القسم قيد التطوير حالياً. سيتم إضافة المزيد من الميزات قريباً.</p>
+                    <p class="text-gray-600 dark:text-gray-400 text-lg">هذه الوحدة قيد التطوير حالياً. سيتم إضافة المزيد من الميزات قريباً.</p>
                 </div>
 
                 <!-- User Info -->
@@ -56,12 +56,12 @@
                                 @if(auth('employee')->check())
                                     موظف
                                 @elseif(auth('department_manager')->check())
-                                    مسؤول قسم
+                                    مسؤول وحدة
                                 @endif
                             </span>
                         </div>
                         <div>
-                            <span class="text-gray-600 dark:text-gray-400">القسم:</span>
+                            <span class="text-gray-600 dark:text-gray-400">الوحدة:</span>
                             <span class="font-semibold">{{ $department->name ?? 'غير محدد' }}</span>
                         </div>
                     </div>
