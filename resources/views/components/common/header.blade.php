@@ -166,28 +166,6 @@
                     </a>
                 </div>
 
-                <div class="dropdown shrink-0" x-data="dropdown" @click.outside="open = false">
-                    <a href="javascript:;"
-                        class="block p-2 rounded-full bg-white-light/40 dark:bg-dark/40 hover:text-primary hover:bg-white-light/90 dark:hover:bg-dark/60"
-                        @click="toggle">
-                        <img :src="`/assets/images/flags/${$store.app.locale.toUpperCase()}.svg`" alt="image"
-                            class="w-5 h-5 object-cover rounded-full" />
-                    </a>
-                    <ul x-cloak x-show="open" x-transition x-transition.duration.300ms
-                        class="ltr:-right-14 sm:ltr:-right-2 rtl:-left-14 sm:rtl:-left-2 top-11 !px-2 text-dark dark:text-white-dark grid grid-cols-2 gap-y-2 font-semibold dark:text-white-light/90 w-[280px]">
-                        <template x-for="item in languages">
-                            <li>
-                                <a href="javascript:;" class="hover:text-primary"
-                                    @click="$store.app.toggleLocale(item.value),toggle()"
-                                    :class="{ 'bg-primary/10 text-primary': $store.app.locale == item.value }">
-                                    <img class="w-5 h-5 object-cover rounded-full"
-                                        :src="`/assets/images/flags/${item.value.toUpperCase()}.svg`" alt="image" />
-                                    <span class="ltr:ml-3 rtl:mr-3" x-text="item.key"></span>
-                                </a>
-                            </li>
-                        </template>
-                    </ul>
-                </div>
 
                 <div class="dropdown" x-data="dropdown" @click.outside="open = false">
                     <a href="javascript:;"
@@ -786,87 +764,6 @@
                 },
             ],
 
-            languages: [{
-                    id: 1,
-                    key: 'Chinese',
-                    value: 'zh',
-                },
-                {
-                    id: 2,
-                    key: 'Danish',
-                    value: 'da',
-                },
-                {
-                    id: 3,
-                    key: 'English',
-                    value: 'en',
-                },
-                {
-                    id: 4,
-                    key: 'French',
-                    value: 'fr',
-                },
-                {
-                    id: 5,
-                    key: 'German',
-                    value: 'de',
-                },
-                {
-                    id: 6,
-                    key: 'Greek',
-                    value: 'el',
-                },
-                {
-                    id: 7,
-                    key: 'Hungarian',
-                    value: 'hu',
-                },
-                {
-                    id: 8,
-                    key: 'Italian',
-                    value: 'it',
-                },
-                {
-                    id: 9,
-                    key: 'Japanese',
-                    value: 'ja',
-                },
-                {
-                    id: 10,
-                    key: 'Polish',
-                    value: 'pl',
-                },
-                {
-                    id: 11,
-                    key: 'Portuguese',
-                    value: 'pt',
-                },
-                {
-                    id: 12,
-                    key: 'Russian',
-                    value: 'ru',
-                },
-                {
-                    id: 13,
-                    key: 'Spanish',
-                    value: 'es',
-                },
-                {
-                    id: 14,
-                    key: 'Swedish',
-                    value: 'sv',
-                },
-                {
-                    id: 15,
-                    key: 'Turkish',
-                    value: 'tr',
-                },
-                {
-                    id: 16,
-                    key: 'Arabic',
-                    value: 'ae',
-                },
-            ],
 
 
             removeNotification(value) {
