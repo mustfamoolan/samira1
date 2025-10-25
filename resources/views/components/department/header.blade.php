@@ -357,11 +357,11 @@
                                 $user = auth('employee')->user() ?? auth('department_manager')->user();
                                 $userType = auth('employee')->check() ? 'موظف' : 'مسؤول وحدة';
                             @endphp
-                            @if($user && $user->photo)
+                            @if($user && $user->photo && Storage::disk('public')->exists($user->photo))
                                 <img class="w-9 h-9 rounded-full object-cover saturate-50 group-hover:saturate-100"
                                     src="{{ Storage::url($user->photo) }}" alt="صورة المستخدم" />
                             @else
-                                <div class="w-9 h-9 rounded-full bg-primary flex items-center justify-center text-white font-bold">
+                                <div class="w-9 h-9 rounded-full bg-primary flex items-center justify-center text-white font-bold text-sm">
                                     {{ $user ? substr($user->name, 0, 1) : '?' }}
                                 </div>
                             @endif
@@ -372,12 +372,12 @@
                         <li>
                             <div class="flex items-center px-4 py-4">
                                 <div class="flex-none">
-                                    @if($user && $user->photo)
+                                    @if($user && $user->photo && Storage::disk('public')->exists($user->photo))
                                         <img class="rounded-md w-10 h-10 object-cover"
                                             src="{{ Storage::url($user->photo) }}"
                                             alt="صورة المستخدم" />
                                     @else
-                                        <div class="w-10 h-10 rounded-md bg-primary flex items-center justify-center text-white font-bold">
+                                        <div class="w-10 h-10 rounded-md bg-primary flex items-center justify-center text-white font-bold text-sm">
                                             {{ $user ? substr($user->name, 0, 1) : '?' }}
                                         </div>
                                     @endif

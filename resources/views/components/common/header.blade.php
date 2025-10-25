@@ -353,11 +353,11 @@
                 <div class="dropdown flex-shrink-0" x-data="dropdown" @click.outside="open = false">
                     <a href="javascript:;" class="relative group" @click="toggle()">
                         <span>
-                            @if(auth('admin')->user()->photo)
+                            @if(auth('admin')->user()->photo && Storage::disk('public')->exists(auth('admin')->user()->photo))
                                 <img class="w-9 h-9 rounded-full object-cover saturate-50 group-hover:saturate-100"
                                     src="{{ Storage::url(auth('admin')->user()->photo) }}" alt="صورة المدير" />
                             @else
-                                <div class="w-9 h-9 rounded-full bg-primary flex items-center justify-center text-white font-bold">
+                                <div class="w-9 h-9 rounded-full bg-primary flex items-center justify-center text-white font-bold text-sm">
                                     {{ substr(auth('admin')->user()->name, 0, 1) }}
                                 </div>
                             @endif
@@ -368,12 +368,12 @@
                         <li>
                             <div class="flex items-center px-4 py-4">
                                 <div class="flex-none">
-                                    @if(auth('admin')->user()->photo)
+                                    @if(auth('admin')->user()->photo && Storage::disk('public')->exists(auth('admin')->user()->photo))
                                         <img class="rounded-md w-10 h-10 object-cover"
                                             src="{{ Storage::url(auth('admin')->user()->photo) }}"
                                             alt="صورة المدير" />
                                     @else
-                                        <div class="w-10 h-10 rounded-md bg-primary flex items-center justify-center text-white font-bold">
+                                        <div class="w-10 h-10 rounded-md bg-primary flex items-center justify-center text-white font-bold text-sm">
                                             {{ substr(auth('admin')->user()->name, 0, 1) }}
                                         </div>
                                     @endif
