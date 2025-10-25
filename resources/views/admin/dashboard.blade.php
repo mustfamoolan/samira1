@@ -158,7 +158,7 @@
                 <!-- Admins -->
                 <div class="panel h-full">
                     <div class="flex justify-between">
-                        <div class="ltr:mr-1 rtl:ml-1 text-md font-semibold">المديرين العامين</div>
+                        <div class="ltr:mr-1 rtl:ml-1 text-md font-semibold">الإدارة</div>
                         <div x-data="dropdown" @click.outside="open = false" class="dropdown">
                             <a href="javascript:;" @click="toggle">
                                 <svg class="w-5 h-5 opacity-70" viewBox="0 0 24 24" fill="none"

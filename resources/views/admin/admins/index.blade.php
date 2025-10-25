@@ -7,20 +7,20 @@
                 <a href="{{ route('admin.dashboard') }}" class="text-primary hover:underline">لوحة التحكم</a>
             </li>
             <li class="before:content-['/'] ltr:before:mr-1 rtl:before:ml-1">
-                <span>المديرين العامين</span>
+                <span>الإدارة</span>
             </li>
         </ul>
 
         <div class="pt-5">
             <div class="panel">
                 <div class="flex items-center justify-between mb-5">
-                    <h5 class="font-semibold text-lg dark:text-white-light">قائمة المديرين العامين</h5>
+                    <h5 class="font-semibold text-lg dark:text-white-light">الإدارة</h5>
                     <a href="{{ route('admin.admins.create') }}" class="btn btn-primary">
                         <svg class="w-4 h-4 ltr:mr-2 rtl:ml-2" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
                             <circle cx="12" cy="12" r="10" stroke="currentColor" stroke-width="1.5" />
                             <path d="M15 12L12 12M12 12L9 12M12 12L12 9M12 12L12 15" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" />
                         </svg>
-                        إضافة مدير عام جديد
+                        إضافة مدير
                     </a>
                 </div>
 

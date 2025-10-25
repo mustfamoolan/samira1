@@ -562,7 +562,7 @@
                         <a href="{{ route('admin.department-managers.index') }}">مسؤولي الأقسام</a>
                     </li>
                     <li>
-                        <a href="{{ route('admin.admins.index') }}">المديرين العامين</a>
+                        <a href="{{ route('admin.admins.index') }}">الإدارة</a>
                     </li>
                 </ul>
             </li>

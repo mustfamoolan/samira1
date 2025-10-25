@@ -8,14 +8,14 @@
                 <a href="{{ route('admin.admins.index') }}" class="text-primary hover:underline">المديرين العامين</a>
             </li>
             <li class="before:content-['/'] ltr:before:mr-1 rtl:before:ml-1">
-                <span>إضافة مدير عام جديد</span>
+                <span>إضافة مدير</span>
             </li>
         </ul>
 
         <div class="pt-5">
             <div class="panel">
                 <div class="mb-5">
-                    <h5 class="font-semibold text-lg dark:text-white-light">إضافة مدير عام جديد</h5>
+                    <h5 class="font-semibold text-lg dark:text-white-light">إضافة مدير</h5>
                 </div>
 
                 @if ($errors->any())
