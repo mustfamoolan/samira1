@@ -94,7 +94,6 @@
                                 </li>
                             </ul>
                         </div>
-                        <p class="dark:text-white">© <span id="footer-year">2022</span>. VRISTO All Rights Reserved.</p>
                     </div>
                 </div>
             </div>

@@ -83,7 +83,6 @@
                         </form>
                     </div>
                     <p class="absolute bottom-6 w-full text-center dark:text-white">
-                        © <span id="footer-year">2022</span>. VRISTO All Rights Reserved.
                     </p>
                 </div>
             </div>
